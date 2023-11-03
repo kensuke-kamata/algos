@@ -27,7 +27,7 @@ A debug function `debug` is provided to print the matrix `mat` for visualization
 
 The backtracking logic reconstructs the sequence of operations (insert, delete, substitute) needed to transform `seq_a` into `seq_b`. During backtracking, operations are printed to the console with their descriptions, indicating the type of operation, the character involved, and its position in the original string.
 
-## Compilation
+## Compilation and Execution
 
 Compile the program with a C++ compiler supporting C++17 or later, as `std::string_view` is used.
 
