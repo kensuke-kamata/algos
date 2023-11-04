@@ -71,11 +71,8 @@ class HashFunction<std::string> {
 
 The hash calculation is based on the idea of treating the string as a number in base `prime_base`, with the modulus `prime_mod` keeping the calculations within a fixed numeric range to prevent overflow and collisions. Each character's ASCII value (offset to start from `1` for `'a'`) contributes to the hash. It's scaled by its position in the string, using powers of `prime_base`.
 
-The use of modular arithmetic ensures that the hash value and the power of `prime_base` (`prime_pow`) remain within the range of `unsigned long` (which is supposed to be a large enough type in this computation process). The `prime_mod` value is chosen to be a large prime to reduce collisions and provide a uniform distribution of hash codes.
-
-- `prime_mod` is applied to the result of each character's contribution to prevent overflow and to `prime_pow` to keep the multiplicative factors within bounds.
-- `prime_mod` is chosen as 1e9 + 9, a large prime number, which is significantly less than the maximum value representable by unsigned long to prevent overflow.
+The use of modular arithmetic ensures that the hash value and the power of `prime_base` (`prime_pow`) remain within the range of `unsigned long` (which is supposed to be a large enough type in this computation process). The `prime_mod` value is chosen to be a large prime to reduce collisions and provide a uniform distribution of hash codes. In this implementation, the `prime_mod` is chosen as `1e9 + 9`, a large prime number which is less than the maximum value of `unsigned long`.
 
 #### Hash Table and Search Classes
 
-The `HashTable`` and `HashSearch`` classes use these hashing strategies to store and search for data. `HashSearch` pre-populates the hash table with the given array before performing the search operation ($O(n)$), offering an efficient search time complexity that, on average, is close to $O(1)$ depending on the hash function's ability to distribute the keys uniformly.
+The `HashTable` and `HashSearch` classes use these hashing strategies to store and search for data. `HashSearch` pre-populates the hash table with the given array by ($O(n)$) before performing the search operation, offering an efficient search time complexity that, on average, is close to $O(1)$ depending on the hash function's ability to distribute the keys uniformly.
