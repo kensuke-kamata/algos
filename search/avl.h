@@ -17,7 +17,7 @@ class tree {
     std::unique_ptr<node> right = nullptr;
     int height = 0;
 
-    node(T value) : value(value) {}
+    explicit node(T value) : value(value) {}
   };
 
   std::unique_ptr<node> root = nullptr;
@@ -72,13 +72,13 @@ class tree {
   std::unique_ptr<node> balance(std::unique_ptr<node> node) {
     int balance = difference(node.get());
 
-    if (balance > 1) {                   // left skewed
+    if (balance > 1) {                         // left skewed
       if (difference(node->left.get()) < 0) {  // left-right skewed
         node->left = lrotate(std::move(node->left));
       }
       return rrotate(std::move(node));
     }
-    if (balance < -1) {                  // right skewed
+    if (balance < -1) {                        // right skewed
       if (difference(node->right.get()) > 0) { // right-left skewed
         node->right = rrotate(std::move(node->right));
       }
