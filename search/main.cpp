@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 
+#include "avl.h"
 #include "hash.h"
 
 int main(int, char**){
@@ -25,6 +26,28 @@ int main(int, char**){
             << (str_search.search(str_arr, str_size, "banana") ? "Found" : "Not Found") << std::endl;
   std::cout << "search<std::string>: " << "kiwi" << ": "
             << (str_search.search(str_arr, str_size, "kiwi") ? "Found" : "Not Found") << std::endl;
+
+  // Test AVL tree
+  avl::tree<int> tree;
+  tree.insert(1);
+  std::cout << "tree: height: " << tree.height() << std::endl;
+
+  tree.insert(2);
+  std::cout << "tree: height: " << tree.height() << std::endl;
+
+  tree.insert(3);
+  std::cout << "tree: height: " << tree.height() << std::endl;
+
+  tree.insert(4);
+  std::cout << "tree: height: " << tree.height() << std::endl;
+
+  tree.remove(3);
+  std::cout << "tree: height: " << tree.height() << std::endl;
+
+  for (auto item : tree.inorder()) {
+    std::cout << item << " ";
+  }
+  std::cout << std::endl;
 
   return 0;
 }
